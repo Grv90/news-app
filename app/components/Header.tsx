@@ -2,6 +2,7 @@
 
 import React, { ReactNode, useState } from "react";
 import { Search, HelpCircle, Settings, Grid } from "lucide-react";
+import Link from "next/link";
 
 const MenuIcon = () => (
   <svg
@@ -41,11 +42,12 @@ const XIcon = () => (
 interface NavItemProps {
   children: ReactNode;
   active?: boolean;
+  href?: string;
 }
 
-const NavItem = ({ children, active = false }: NavItemProps) => (
+const NavItem = ({ children, href = "#", active = false }: NavItemProps) => (
   <a
-    href="#"
+    href={href}
     className={`px-4 py-4 text-sm hover:text-blue-600 whitespace-nowrap ${
       active
         ? "text-blue-600 border-b-4 border-blue-600 lg:border-b-4"
@@ -80,15 +82,15 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <a href="#" className="px-4 py-3 hover:bg-gray-100">
             Home
           </a>
-          <a
-            href="#"
+          <Link
+            href="/"
             className="px-4 py-3 hover:bg-gray-100 bg-blue-50 text-blue-600"
           >
             For you
-          </a>
-          <a href="#" className="px-4 py-3 hover:bg-gray-100">
+          </Link>
+          <Link href="/following" className="px-4 py-3 hover:bg-gray-100">
             Following
-          </a>
+          </Link>
           <a href="#" className="px-4 py-3 hover:bg-gray-100">
             News Showcase
           </a>
@@ -181,8 +183,10 @@ const Header = () => {
       {/* Navigation - Hidden on mobile */}
       <nav className="hidden lg:flex items-center px-6 overflow-x-auto">
         <NavItem>Home</NavItem>
-        <NavItem active>For you</NavItem>
-        <NavItem>Following</NavItem>
+        <NavItem href="/" active>
+          For you
+        </NavItem>
+        <NavItem href="/following">Following</NavItem>
         <NavItem>News Showcase</NavItem>
         <NavItem>New Zealand</NavItem>
         <NavItem>World</NavItem>

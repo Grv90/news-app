@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "./components/Header";
+import SectionHeader from "./components/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +15,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex">
-        <main className="flex-grow flex flex-col">{children}</main>
+      <body>
+        <div className="bg-[#f7fcff] w-full h-screen">
+          <Header />
+          <div className="max-w-7xl mx-auto px-4 py-6 pb-20 lg:pb-6">
+            {/* This is where dynamic content will be injected */}
+            <div className="flex flex-col lg:flex-row lg:gap-6">
+              {/* This will render the child page content */}
+              <main>{children}</main>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
