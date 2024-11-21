@@ -1,6 +1,11 @@
 import React from "react";
 
-const SectionHeader = ({ heading, subtitle }) => {
+interface SectionHeaderProps {
+  heading: string;
+  subtitle: string;
+}
+
+const SectionHeader = ({ heading, subtitle }: SectionHeaderProps) => {
   return (
     <div className="mb-8">
       <h1 className="text-3xl font-semibold text-[#5534da]">{heading}</h1>

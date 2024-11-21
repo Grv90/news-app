@@ -129,7 +129,7 @@ const MainContent = () => {
                 className="border-b border-gray-200 pb-6 last:border-0"
               >
                 {/* Main Story */}
-                {story.isMainStory ? (
+                {"isMainStory" in story && story.isMainStory ? (
                   <div className="space-y-4">
                     <div className="w-full h-40 bg-gray-200 rounded-lg sm:h-64" />
                     <div>
@@ -147,7 +147,7 @@ const MainContent = () => {
                       </div>
                     </div>
                   </div>
-                ) : story.relatedStories ? (
+                ) : "relatedStories" in story && story.relatedStories ? (
                   /* Related Stories Layout */
                   <div className="space-y-4">
                     <div className="flex flex-col gap-4 sm:flex-row">
@@ -207,10 +207,13 @@ const MainContent = () => {
                         {story.title}
                       </h3>
                       <div className="text-xs text-gray-500 sm:text-sm">
-                        {story.time} {story.author && `• ${story.author}`}
+                        {story.time}{" "}
+                        {"author" in story &&
+                          story.author &&
+                          `• ${story.author}`}
                       </div>
                     </div>
-                    {story.hasImage && (
+                    {"hasImage" in story && story.hasImage && (
                       <div className="w-full h-40 bg-gray-200 rounded-lg sm:w-16 sm:h-16 flex-shrink-0" />
                     )}
                   </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Search, HelpCircle, Settings, Grid } from "lucide-react";
 
 const MenuIcon = () => (
@@ -38,7 +38,12 @@ const XIcon = () => (
   </svg>
 );
 
-const NavItem = ({ children, active = false }) => (
+interface NavItemProps {
+  children: ReactNode;
+  active?: boolean;
+}
+
+const NavItem = ({ children, active = false }: NavItemProps) => (
   <a
     href="#"
     className={`px-4 py-4 text-sm hover:text-blue-600 whitespace-nowrap ${
@@ -51,7 +56,12 @@ const NavItem = ({ children, active = false }) => (
   </a>
 );
 
-const MobileMenu = ({ isOpen, onClose }) => {
+interface MobileMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) return null;
 
   return (
